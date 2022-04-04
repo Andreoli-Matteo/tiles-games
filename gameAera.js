@@ -1,10 +1,12 @@
 import Level from "./level.js";
-import Level1 from "./level/livelli.js";
+import Level1 from "./livelli.js";
 import AnimatedObject from "./AnimatedObject.js";
 import NinjaSprites from "./NinjaSprites.js";
 export default class GameArea {
     
   constructor() {
+    document.getElementById('bt').addEventListener('click', this.cGallo);
+
     this.ninja= new AnimatedObject(NinjaSprites.running,60,60,10,120);
     this.level = new Level(
       20,
@@ -26,6 +28,9 @@ export default class GameArea {
     this.canvas.height = 640;
     this.context = this.canvas.getContext("2d");
     this.interval = setInterval(this.updateGameArea, 20); //ogni 20 ms chiamo il metodo updateGameArea
+    document.addEventListener("keydown", this.move);
+    document.addEventListener("keyup", this.clearmove);
+    this.obstaclesVector = this.level.obstaclesVector;
   }
   drawAnimatedObject(gameObject) {
     this.context.drawImage(
@@ -43,7 +48,30 @@ export default class GameArea {
   updateGameArea = () => {
     this.clear();
     this.level.draw(this.context);
-    this.obstaclesVector = [];
+     this.obstaclesVector = this.level.obstaclesVector;
     this.ninja.update(this.obstaclesVector)
-    this.ninja.draw8(this.context)  };
-}
+    this.ninja.draw(this.context) 
+   };
+    move = e => {
+      switch (e.key) {
+        case "w":
+          this.ninja.speedY = -2;
+          break;
+        case "s":
+          this.ninja.speedY = 2;
+          break;
+        case "a":
+          this.ninja.speedX = -2;
+          break;
+        case "d":
+          this.ninja.speedX = 2;
+          break;
+      }
+    };
+  
+    clearmove = () => {
+      this.ninja.speedX = 0;
+      this.ninja.speedY = 0;
+    };
+ sdas}
+  

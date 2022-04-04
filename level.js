@@ -1,4 +1,6 @@
-export default class Levels {
+
+import RawObject from "./RawObject.js";
+export default class Level {
     level_width; //Altezza e larghezza dell livello (in tiles)
     level_height;
     tile_width; //Dimensione di ogni tile
@@ -13,6 +15,7 @@ export default class Levels {
     tileMapImage //L'immagine da cui recuperare tutti i tile
     tileMapImgHeight; //Le dimensioni della mappa da cui recupero i tile
     tileMapImageWidth;
+    obstaclesVector = [];
     constructor(level_width, level_height, tile_width, tile_height, terra, erba,mare, barca, strada, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
@@ -27,15 +30,17 @@ export default class Levels {
         this.tileMapImage.src = tileMapsrc;
         this.tileMapImgHeight = tileMapImgHeight;
         this.tileMapImageWidth = tileMapImageWidth;
+        this.pushLayerObstacleVector(mare, tile_width,tile_height)
+        
     }
 
     draw(canvasContext) {
         //Disegno l'acqua
-       this.drawLayer(this.terra, canvasContext);
-       this.drawLayer(this.erba, canvasContext);
+       //this.drawLayer(this.terra, canvasContext);
+       //this.drawLayer(this.erba, canvasContext);
        this.drawLayer(this.mare, canvasContext);
-       this.drawLayer(this.barca, canvasContext);
-       this.drawLayer(this.strada,canvasContext);
+       //this.drawLayer(this.barca, canvasContext);
+       //this.drawLayer(this.strada,canvasContext);
        
     }
 
@@ -68,6 +73,8 @@ export default class Levels {
             
             let obstacle = new RawObject(dx, dy, tile_width, tile_height)
             this.obstaclesVector.push(obstacle);
+
+            console.log(obstacle);
         }
       }
     }
