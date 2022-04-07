@@ -36,11 +36,11 @@ export default class Level {
 
     draw(canvasContext) {
         //Disegno l'acqua
-       //this.drawLayer(this.terra, canvasContext);
-       //this.drawLayer(this.erba, canvasContext);
+       this.drawLayer(this.terra, canvasContext);
+       this.drawLayer(this.erba, canvasContext);
        this.drawLayer(this.mare, canvasContext);
-       //this.drawLayer(this.barca, canvasContext);
-       //this.drawLayer(this.strada,canvasContext);
+       this.drawLayer(this.barca, canvasContext);
+       this.drawLayer(this.strada,canvasContext);
        
     }
 

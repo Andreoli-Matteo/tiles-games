@@ -52,7 +52,7 @@ export default class GameArea {
     this.ninja.update(this.obstaclesVector)
     this.ninja.draw(this.context) 
    };
-    move = e => {
+    move = e => {andriolli
       switch (e.key) {
         case "w":
           this.ninja.speedY = -2;
@@ -73,5 +73,5 @@ export default class GameArea {
       this.ninja.speedX = 0;
       this.ninja.speedY = 0;
     };
- sdas}
+ }
   
